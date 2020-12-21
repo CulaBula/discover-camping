@@ -24,6 +24,7 @@ content = driver.page_source.encode('utf-8').strip()
 soup = BeautifulSoup(content, 'html.parser')
 t = soup.find_all("td", {"class":"blue_brd_box"})
 print([x['title'].split()[-1] for x in t])
+"""
 site_date = {}
 tmp_list = []
 for x in range(len(t)):      
@@ -39,3 +40,4 @@ for x in range(len(t)):
 print('Site dates are:')
 print(site_date)
 site_date['Y1']
+"""
