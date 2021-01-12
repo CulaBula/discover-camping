@@ -30,7 +30,6 @@ while True:
         soup = BeautifulSoup(content_month, 'html.parser') 
         driver.find_element_by_xpath("""//*[@id="ui-datepicker-div"]/div[2]/a[2]""").click()        
     else:
-#        print(soup.find("span",{"class":"ui-datepicker-month"}).get_text(strip=True))
         break
 #Year
 #print(soup.find("span",{"class":"ui-datepicker-year"}).get_text(strip=True))
@@ -56,32 +55,52 @@ for sts in soup.find_all("div",{"class":"available_btn_list"}):
 #Combine the 2 lists
 full_list = zip(loc_list,sts_list)
 #Output List
-output_list = []
+park_list = []
+fac_list = []
+unit_type_list = []
+unit_status_list = []
+i = 0
 #loop through and print Available
 print ("The following have sites available:")
 for a,b in full_list:
-    if b.strip() == "Available": #and a.strip() == "Alice Lake Park":      
+    if b.strip() == "Available":      
         driver.find_element_by_xpath("//a[contains(@class, 'PlaceName') and contains(text(), '"+str(a.strip())+"')]").click()
+        time.sleep(0.5)
         content_loc = driver.page_source.encode('utf-8').strip()
         soup = BeautifulSoup(content_loc, 'html.parser')
         table_div = soup.find('div' , {'id': 'right_box_data' })
         park_name = table_div.find('div' , {'class': 'right_park_name' }).get_text()
-#        print(park_name)
-#        print(table_div.get_text())
-        output_list.append(park_name)
-
-##        for sts in table_div.find_all('tr'):
-##            for fac in sts.find_all('span'):
-##                if re.search('span_.',str(fac.get_text)):
-##                    facility = (fac.get_text())
-##            for un_type in sts.find_all("div",{"class":"ellipsis_one_lien"}):
-##                if un_type.get_text() != "Show Next Date Available":
-##                    unit_type = un_type.get_text().strip()
-##                unit_status = str(un_type.find('img')['src'])
-print(output_list)
+        if park_name != a:
+            print("Timeout error")
+        park_list.append(park_name)
+        for sts in table_div.find_all('tr'):
+            for fac in sts.find_all('span'):
+                if re.search('span_.',str(fac.get_text)):
+                    facility = (fac.get_text())
+                    fac_list.append(facility)
+            for un_type in sts.find_all("div",{"class":"ellipsis_one_lien"}):
+                #Strip out unit name
+                if un_type.get_text() != "Show Next Date Available":
+                    unit_type = un_type.get_text().strip()
+                    unit_type_list.append(unit_type)
+                #Strip out status
+                unit_status_raw = str(un_type.find('img')['src'])
+                if unit_status_raw == "../CommonThemes/Images/round_red.png":
+                    unit_status= "Unavailable"
+                elif unit_status_raw == "../CommonThemes/Images/round_2.png":
+                    unit_status= "Low Availablity"
+                elif unit_status_raw == "../CommonThemes/Images/round_1.png":
+                    unit_status= "Available"                
+                else:
+                    unit_status= "Error"
+                unit_status_list.append(unit_status)
+print(park_list)
+print(fac_list)
+print(unit_type_list)
+print(unit_status_list)
 
                 
-#            print(" ".join(str(sts.get_text()).split()))
+#           print(" ".join(str(sts.get_text()).split()))
 
             
 ## Test Code ##
