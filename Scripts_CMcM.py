@@ -3,6 +3,7 @@ from selenium.webdriver.support.ui import Select
 from bs4 import BeautifulSoup
 import re
 import time
+import pandas as pd
 
 ## User Input ##
 #year_input = "2022"
@@ -11,7 +12,7 @@ day_input = "20"
 day_count = "2"
 
 #Point to web driver 
-chrome_path = r"C:\My_Files\discover-camping\chromedriver.exe"
+    chrome_path = "chromedriver.exe"
 driver = webdriver.Chrome(chrome_path)
 
 #Go to site
@@ -60,6 +61,8 @@ fac_list = []
 unit_type_list = []
 unit_status_list = []
 i = 0
+main_dict = {}
+fac_dict = {'facilities':{}}
 #loop through and print Available
 print ("The following have sites available:")
 for a,b in full_list:
@@ -73,16 +76,20 @@ for a,b in full_list:
         if park_name != a:
             print("Timeout error")
         park_list.append(park_name)
+        # main_dict[park_name] = fac_dict
         for sts in table_div.find_all('tr'):
             for fac in sts.find_all('span'):
+                unit_type_list = []
+                unit_status_list = []
                 if re.search('span_.',str(fac.get_text)):
                     facility = (fac.get_text())
                     fac_list.append(facility)
+                    fac_dict['facilities'][facility] = {} 
             for un_type in sts.find_all("div",{"class":"ellipsis_one_lien"}):
                 #Strip out unit name
-                if un_type.get_text() != "Show Next Date Available":
+                if un_type.get_text() != "Show Next Date Available":                    
                     unit_type = un_type.get_text().strip()
-                    unit_type_list.append(unit_type)
+                    unit_type_list.append(unit_type)                    
                 #Strip out status
                 unit_status_raw = str(un_type.find('img')['src'])
                 if unit_status_raw == "../CommonThemes/Images/round_red.png":
@@ -94,10 +101,17 @@ for a,b in full_list:
                 else:
                     unit_status= "Error"
                 unit_status_list.append(unit_status)
-print(park_list)
-print(fac_list)
-print(unit_type_list)
-print(unit_status_list)
+                fac_dict['facilities'][facility]['type'] = unit_type_list
+                fac_dict['facilities'][facility]['status'] = unit_status_list
+        main_dict[park_name] = fac_dict
+
+df = pd.DataFrame(data=main_dict)
+df.to_csv('cg_data.csv')
+print(main_dict)
+# print(park_list)
+# print(fac_list)
+# print(unit_type_list)
+# print(unit_status_list)
 
                 
 #           print(" ".join(str(sts.get_text()).split()))
