@@ -16,10 +16,9 @@ discover.camping.app@gmail.com
 Vancouver306
 
 #Hosting:
-https://app.infinityfree.net/accounts/epiz_27674497
 Username: discover.camping.app@gmail.com
-Pass: Vancouver306
-Site Url: discover-camping-app.epizy.com
+Pass: Vancouver306@
+
 
 #Video used to setup hosting
-https://www.youtube.com/watch?v=8hVnwyfFyyI
+https://www.youtube.com/watch?v=wIH2qBLwonE
