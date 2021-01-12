@@ -1,3 +1,6 @@
 chromedriver.exe
 debug.log
 cg_data.csv
+*.log
+*.csv
+.vscode/launch.json
