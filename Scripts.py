@@ -22,15 +22,14 @@ time.sleep(1)
 #Pull out available dates
 content = driver.page_source.encode('utf-8').strip()
 soup = BeautifulSoup(content, 'html.parser')
-t = soup.find_all("td", {"class":"blue_brd_box"})
+t = soup.find_all("td", {"class":"btn_red btn_red_brd"})
 print([x['title'].split()[-1] for x in t])
-"""
 site_date = {}
 tmp_list = []
 for x in range(len(t)):      
-    if t[x]['title'].split()[-5] == t[x-1]['title'].split()[-5]
-        
-    tmp = x['title'].split()
+    if t[x]['title'].split()[-5] == t[x-1]['title'].split()[-5]:
+        tmp = x['title'].split()
+
     if tmp_list:
         tmp_list.append(site_date[tmp[-1]])
         site_date[tmp[-5]] = tmp_list
@@ -39,5 +38,4 @@ for x in range(len(t)):
 
 print('Site dates are:')
 print(site_date)
-site_date['Y1']
-"""
+"""site_date['Y1']"""
