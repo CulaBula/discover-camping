@@ -5,7 +5,7 @@ from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 import re
 import time
-import pandas as pd
+#import pandas as pd
 
 ## User Input ##
 #year_input = "2022"
@@ -109,8 +109,8 @@ for a,b in full_list:
                 fac_dict['facilities'][facility]['status'] = unit_status_list
         main_dict[park_name] = fac_dict
 
-df = pd.DataFrame(data=main_dict)
-df.to_csv('cg_data.csv')
+##df = pd.DataFrame(data=main_dict)
+##df.to_csv('cg_data.csv')
 print(main_dict)
 # print(park_list)
 # print(fac_list)
