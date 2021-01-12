@@ -58,6 +58,7 @@ full_list = zip(loc_list,sts_list)
 park_list = []
 fac_list = []
 unit_type_list = []
+unit_status_list = []
 i = 0
 #loop through and print Available
 print ("The following have sites available:")
@@ -81,6 +82,7 @@ for a,b in full_list:
                 #Strip out unit name
                 if un_type.get_text() != "Show Next Date Available":
                     unit_type = un_type.get_text().strip()
+                    unit_type_list.append(unit_type)
                 #Strip out status
                 unit_status_raw = str(un_type.find('img')['src'])
                 if unit_status_raw == "../CommonThemes/Images/round_red.png":
@@ -91,10 +93,11 @@ for a,b in full_list:
                     unit_status= "Available"                
                 else:
                     unit_status= "Error"
-                unit_type_list.append(unit_status)
+                unit_status_list.append(unit_status)
 print(park_list)
 print(fac_list)
 print(unit_type_list)
+print(unit_status_list)
 
                 
 #           print(" ".join(str(sts.get_text()).split()))
