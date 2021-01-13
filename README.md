@@ -16,9 +16,13 @@ discover.camping.app@gmail.com
 Vancouver306
 
 #Hosting:
+Heroku: https://id.heroku.com/login
 Username: discover.camping.app@gmail.com
 Pass: Vancouver306@
 
 
 #Video used to setup hosting
 https://www.youtube.com/watch?v=wIH2qBLwonE
+
+#Video used deploy django to Heroku
+https://www.youtube.com/watch?v=GMbVzl_aLxM
