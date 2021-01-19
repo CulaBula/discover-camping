@@ -1,6 +1,5 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
-from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 import re
@@ -23,7 +22,7 @@ driver = webdriver.Chrome(chrome_path, chrome_options=options)
 driver.get("https://www.discovercamping.ca/bccweb/Facilities/SearchViewUnitAvailabity.aspx")
 
 #Select Calendar
-driver.find_element_by_id("mainContent_SearchUnitAvailbity_txtArrivalDate").click()
+driver.find_element_by_id("mainContent_SearchUnitAvailbity_txtArrivalDate").click();
 #Setup beatiful soup for date picker
 content_date = driver.page_source.encode('utf-8').strip()
 soup = BeautifulSoup(content_date, 'html.parser')
@@ -65,12 +64,12 @@ fac_list = []
 unit_type_list = []
 unit_status_list = []
 i = 0
-main_dict = {}
-fac_dict = {'facilities':{}}
+main_list = []
 #loop through and print Available
 print ("The following have sites available:")
 for a,b in full_list:
     if b.strip() == "Available":      
+        fact_dict = {}
         driver.find_element_by_xpath("//a[contains(@class, 'PlaceName') and contains(text(), '"+str(a.strip())+"')]").click()
         time.sleep(0.5)
         content_loc = driver.page_source.encode('utf-8').strip()
@@ -80,6 +79,7 @@ for a,b in full_list:
         if park_name != a:
             print("Timeout error")
         park_list.append(park_name)
+        fact_dict['park_name']=park_name
         # main_dict[park_name] = fac_dict
         for sts in table_div.find_all('tr'):
             for fac in sts.find_all('span'):
@@ -88,7 +88,7 @@ for a,b in full_list:
                 if re.search('span_.',str(fac.get_text)):
                     facility = (fac.get_text())
                     fac_list.append(facility)
-                    fac_dict['facilities'][facility] = {} 
+                    fact_dict['park_facility']=facility 
             for un_type in sts.find_all("div",{"class":"ellipsis_one_lien"}):
                 #Strip out unit name
                 if un_type.get_text() != "Show Next Date Available":                    
@@ -99,22 +99,91 @@ for a,b in full_list:
                 if unit_status_raw == "../CommonThemes/Images/round_red.png":
                     unit_status= "Unavailable"
                 elif unit_status_raw == "../CommonThemes/Images/round_2.png":
-                    unit_status= "Low Availablity"
+                    unit_status= "Low Availability"
                 elif unit_status_raw == "../CommonThemes/Images/round_1.png":
                     unit_status= "Available"                
                 else:
                     unit_status= "Error"
                 unit_status_list.append(unit_status)
-                fac_dict['facilities'][facility]['type'] = unit_type_list
-                fac_dict['facilities'][facility]['status'] = unit_status_list
-        main_dict[park_name] = fac_dict
+                
+                fact_dict['park_type'] = unit_type
+                fact_dict['park_status'] = unit_status
+                main_list.append(fact_dict)
 
-df = pd.DataFrame(data=main_dict)
-df.to_csv('cg_data.csv')
-print(main_dict)
+# df = pd.DataFrame(data=main_dict)
+# df.to_csv('cg_data.csv')
+print(main_list)
 # print(park_list)
 # print(fac_list)
 # print(unit_type_list)
 # print(unit_status_list)
 
                 
+#           print(" ".join(str(sts.get_text()).split()))
+
+            
+## Test Code ##
+
+
+
+#find_elements_by_xpath(day_xpath).click()
+
+##table =  driver.find_element_by_xpath("//table[@class='ui-datepicker-calendar']")
+##table.find_elements_by_xpath(".//tr[@class='ui-state-default'][contains(text(),"+day_input+")]").click()
+#driver.find_element_by_xpath("//td[@class= ' '/a/"+day_input+"]").click()
+    
+##    if len([td.text for td in row.find_elements_by_xpath(".//td[@class=' ui-datepicker-week-end ui-datepicker-days-cell-over  ui-datepicker-current-day ui-datepicker-today'][1]")]) >= 1:
+##        print([td.text for td in row.find_elements_by_xpath(".//td[@class=' ui-datepicker-week-end ui-datepicker-days-cell-over  ui-datepicker-current-day ui-datepicker-today'][1]")][0])
+
+
+#    if str([td.text for td in row.find_elements_by_xpath(".//td[@class='ui-state-default'][1]")][0]) == day_input:
+#        [td.text for td in row.find_elements_by_xpath(".//td[@class='ui-state-default'][1]")][0].click()
+#        print([td.text for td in row.find_elements_by_xpath(".//td[@id='ui-datepicker-div'][1]")])
+#        print([td.text for td in row.find_elements_by_xpath(".//td[@class=' ui-datepicker-week-end ui-datepicker-days-cell-over  ui-datepicker-current-day ui-datepicker-today'][1]")][0])
+##    if soup.find_all("a",{"class":"ui-state-default"})
+##        print(soup.find("span",{"class":"ui-datepicker-month"}).get_text(strip=True))
+##    else:
+##        driver.find_element_by_xpath("""//*[@id="ui-datepicker-div"]/div[2]/a[2]""").click()
+##        content_day = driver.page_source.encode('utf-8').strip()
+##        soup = BeautifulSoup(content_day, 'html.parser')
+##        break
+
+#Choose July 29th
+#driver.find_element_by_xpath("""//*[@id="ui-datepicker-div"]/table/tbody/tr[5]/td[4]/a""").click()
+
+
+
+
+###Select Calendar
+##driver.find_element_by_id("mainContent_SearchUnitAvailbity_txtArrivalDate").click();
+###Choose July 29th
+##driver.find_element_by_xpath("""//*[@id="ui-datepicker-div"]/table/tbody/tr[5]/td[4]/a""").click()
+###Click Search
+##driver.find_element_by_xpath("""//*[@id="divPlaceSearchParameter"]/div/div[2]/div[1]/div[5]/a""").click()
+##time.sleep(1)
+###Choose Porpoise Bay Park
+##driver.find_element_by_xpath("""//*[@id="down_icn103"]/div[2]/div/div[1]/div/div/div""").click()
+##time.sleep(1)
+###Choose group site(has to be green)
+##driver.find_element_by_xpath("""//*[@id="number_103"]/div[3]/table/tbody/tr[5]/td[2]/div/div[2]/a""").click()
+##time.sleep(1)
+###Pull out available dates
+##content = driver.page_source.encode('utf-8').strip()
+##soup = BeautifulSoup(content, 'html.parser')
+##t = soup.find_all("td", {"class":"btn_red btn_red_brd"})
+##print([x['title'].split()[-1] for x in t])
+##site_date = {}
+##tmp_list = []
+##for x in range(len(t)):      
+##    if t[x]['title'].split()[-5] == t[x-1]['title'].split()[-5]:
+##        tmp = x['title'].split()
+##
+##    if tmp_list:
+##        tmp_list.append(site_date[tmp[-1]])
+##        site_date[tmp[-5]] = tmp_list
+##    else:
+##        tmp_list = []
+##
+##print('Site dates are:')
+##print(site_date)
+##"""site_date['Y1']"""
