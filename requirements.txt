@@ -1,0 +1,38 @@
+asgiref @ file:///tmp/build/80754af9/asgiref_1605055780383/work
+astroid @ file:///C:/ci/astroid_1592495992870/work
+beautifulsoup4==4.9.3
+brotlipy==0.7.0
+bs4==0.0.1
+certifi==2020.12.5
+cffi @ file:///C:/ci/cffi_1606255201193/work
+colorama @ file:///tmp/build/80754af9/colorama_1607707115595/work
+cryptography @ file:///C:/ci/cryptography_1607637872302/work
+cycler==0.10.0
+Django @ file:///tmp/build/80754af9/django_1609784082548/work
+idna @ file:///tmp/build/80754af9/idna_1609784788857/work
+isort @ file:///tmp/build/80754af9/isort_1602603989581/work
+lazy-object-proxy @ file:///C:/b/work
+matplotlib==2.1.0rc1
+mccabe==0.6.1
+numpy==1.16.4
+pandas==0.24.2
+psycopg2 @ file:///C:/ci/psycopg2_1608141663370/work
+pycparser @ file:///tmp/build/80754af9/pycparser_1594388511720/work
+pylint @ file:///C:/ci/pylint_1598624066230/work
+pyOpenSSL @ file:///tmp/build/80754af9/pyopenssl_1608057966937/work
+pyparsing==2.2.0
+PySocks @ file:///C:/ci/pysocks_1605305839978/work
+python-dateutil==2.6.1
+pytz==2017.2
+scikit-learn==0.19.0
+scipy==1.0.0rc1
+selenium==3.141.0
+six==1.11.0
+soupsieve==2.1
+sqlparse @ file:///tmp/build/80754af9/sqlparse_1602184451250/work
+toml @ file:///tmp/build/80754af9/toml_1592853716807/work
+typed-ast @ file:///C:/ci/typed-ast_1610466539988/work
+urllib3 @ file:///tmp/build/80754af9/urllib3_1606938623459/work
+win-inet-pton @ file:///C:/ci/win_inet_pton_1605306197271/work
+wincertstore==0.2
+wrapt==1.11.2
