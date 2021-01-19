@@ -1,0 +1,27 @@
+{% extends "webui/base.html" %}
+{% block content %}
+<form action="query" method="post">
+    <div class="form-group">
+      <div class="input-group">
+      <span class="input-group-btn">
+          <label for="exampleFormControlInput1">Date:</label>
+          <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="YYYY-MM-DD">
+      </span>
+      <span class="input-group-btn">
+          <label for="exampleFormControlSelect1">Number of nights:</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+      </span>
+      <span class="input-group-btn">
+        <br>
+        <button id="searchbtn" type="submit" class="form-control">Submit</button>
+      </span>
+      </div>	
+  </div>	
+</form>
+{% endblock content %}
