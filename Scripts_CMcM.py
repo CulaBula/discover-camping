@@ -4,7 +4,7 @@ from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 import re
 import time
-import pandas as pd
+#import pandas as pd
 
 ## User Input ##
 #year_input = "2022"
