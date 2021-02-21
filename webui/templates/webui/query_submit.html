@@ -1,0 +1,18 @@
+{% extends "webui/base.html" %}
+{% block content %}
+    {% for result in results %}
+        {% if 'Available' in result.park_status or 'Low Availability' in result.park_status %}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" href="#">{{ result.park_status }}</a>
+                </div>
+                <h2><a class="article-title" href="#">{{ result.park_name }}</a></h2>
+                <p class="article-content">Park facility: {{ result.park_facility }}</p>
+                <p class="article-content">Park type: {{ result.park_type }}</p>
+            </div>
+        </article>
+        {% endif %}
+    {% endfor %}
+
+{% endblock content %}

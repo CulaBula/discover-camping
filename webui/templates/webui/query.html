@@ -1,6 +1,8 @@
 {% extends "webui/base.html" %}
 {% block content %}
-<form action="query" method="post">
+<!-- <form action="query_submit" method="get"> "{% url 'dc-home' %}" -->
+<!-- <form action="{% url 'dc-query_submit' %}" method="get">
+  {% csrf_token %}
     <div class="form-group">
       <div class="input-group">
       <span class="input-group-btn">
@@ -19,9 +21,35 @@
       </span>
       <span class="input-group-btn">
         <br>
-        <button id="searchbtn" type="submit" class="form-control">Submit</button>
+        
+        
       </span>
       </div>	
-  </div>	
+  </div>
+  <input type="submit" value="Submit">
+</form> -->
+<form action="{% url 'dc-query_submit' %}", method="get">
+  {% csrf_token %}
+  <span class="input-group-btn">
+    <label for="exampleFormControlInput1">Date:</label>
+    <!-- <input type="date" class="form-control" id="exampleFormControlInput1" placeholder={{ proposed_arrival_date }} name="date"> -->
+    <input type="date" class="form-control" id="exampleFormControlInput1" placeholder={{ proposed_arrival_date }} name="date" value={{ proposed_arrival_date }}>
+  </span>
+  <br>
+  <span class="input-group-btn">
+    <label for="num_nights">Number of nights:</label>
+    <select class="form-control" id="num_nights" name="num_nights">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+  </span>
+  <br>
+  <span class="input-group-btn">
+    <input type="submit" value="Submit" class="btn btn-success">
+  </span>
+  
 </form>
 {% endblock content %}
