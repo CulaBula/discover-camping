@@ -5,8 +5,8 @@ cg_data.csv
 *.csv
 __pycache__/
 *.pyc
-discover_camping/__pycache__/*.pyc
-webui/__pycache__/*.pyc
-discover_camping/__pycache__/wsgi.cpython-36.pyc
+discover_camping/__pycache__/
+webui/__pycache__/
 .vscode/
 .vscode/settings.json
+webui/migrations/__pycache__/
