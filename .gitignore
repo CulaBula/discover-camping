@@ -8,3 +8,4 @@ __pycache__/
 discover_camping/__pycache__/*.pyc
 webui/__pycache__/*.pyc
 discover_camping/__pycache__/wsgi.cpython-36.pyc
+.vscode/
