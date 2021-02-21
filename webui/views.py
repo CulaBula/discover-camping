@@ -38,9 +38,17 @@ def query_submit(request):
         # Send data to scraper
         results = data.scrape(user_input)
 
+        # Determine class of each row by status
+        for res in results:
+            if res['park_status']=='Available':
+                res['class'] = 'success'
+            elif res['park_status']=='Low Availability':
+                res['class'] = 'warning'
+            else: 
+                res['class']='danger'
         print(results)
 
-        context = {'results':results}
+        context = {'request':user_input,'results':results}
 
 
         return render(request, 'webui/query_submit.html', context)

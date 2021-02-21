@@ -1,6 +1,31 @@
 {% extends "webui/base.html" %}
 {% block content %}
-    {% for result in results %}
+    <div class="container">
+        <h1>Availability for {{request.date}} for {{request.num_nights}} night(s)</h1>
+    </div>
+    <div class="container">
+        <table class="table table-hover">
+            <thead>
+                <th>Park</th>
+                <th>Facility</th>
+                <th>Type</th>
+                <th>Status</th>
+            </thead>
+            <tbody>
+                {% for result in results %}
+                    {% if 'Available' in result.park_status or 'Low Availability' in result.park_status %}
+                        <tr class = {{ result.class }}>
+                            <td>{{ result.park_name }}</td>
+                            <td>{{ result.park_facility }}</td>
+                            <td>{{ result.park_type }}</td>
+                            <td>{{ result.park_status }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- {% for result in results %}
         {% if 'Available' in result.park_status or 'Low Availability' in result.park_status %}
         <article class="media content-section">
             <div class="media-body">
@@ -13,6 +38,6 @@
             </div>
         </article>
         {% endif %}
-    {% endfor %}
+    {% endfor %} -->
 
 {% endblock content %}
