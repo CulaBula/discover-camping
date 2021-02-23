@@ -1,12 +1,13 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
+#from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
 import re
 import time
 import calendar
 import datetime
+import os
 
 
 def scrape(param_dict):
@@ -20,11 +21,17 @@ def scrape(param_dict):
     day_count = param_dict["num_nights"]
 
     #Point to web driver 
- #   chrome_path = "chromedriver.exe"
-    options = Options()
-    options.headless = True
- #   driver = webdriver.Chrome(chrome_path, chrome_options=options)
-    driver = webdriver.Chrome(ChromeDriverManager().install(),chrome_options=options)
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--no-sandbox")
+    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+#     chrome_path = "chromedriver.exe"
+#     options = Options()
+#     options.headless = True
+#     driver = webdriver.Chrome(chrome_path, chrome_options=options)
+#  #   driver = webdriver.Chrome(ChromeDriverManager().install(),chrome_options=options)
 
     #Go to site
     driver.get("https://www.discovercamping.ca/bccweb/Facilities/SearchViewUnitAvailabity.aspx")
