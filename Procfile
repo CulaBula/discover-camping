@@ -1,1 +1,1 @@
-web: gunicorn discover_camping.asgi:application
+web: daphne discover_camping.asgi:application
