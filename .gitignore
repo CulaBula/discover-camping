@@ -4,3 +4,9 @@ cg_data.csv
 .vscode/launch.json
 *.csv
 __pycache__/
+*.pyc
+discover_camping/__pycache__/
+webui/__pycache__/
+.vscode/
+.vscode/settings.json
+webui/migrations/__pycache__/
