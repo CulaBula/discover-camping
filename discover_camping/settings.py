@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '0m#bkvx4gr642e=ds&b_$psnc_*m9crgjj%q5k_+(pw$q47t5d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://discover-camping-app.herokuapp.com/','127.0.0.1','localhost']
 
 
 # Application definition
