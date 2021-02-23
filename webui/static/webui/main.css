@@ -82,3 +82,15 @@ body {
   .account-heading {
     font-size: 2.5rem;
   }
+
+  .result-available{
+    background-color: forestgreen;
+  }
+
+  .result-low{
+    background-color: rgb(219, 216, 23);
+  }
+
+  .result-un{
+    background-color: rgb(219, 23, 23);
+  }

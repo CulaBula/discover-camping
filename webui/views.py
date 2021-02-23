@@ -41,11 +41,11 @@ def query_submit(request):
         # Determine class of each row by status
         for res in results:
             if res['park_status']=='Available':
-                res['class'] = 'success'
+                res['class'] = 'result-available'
             elif res['park_status']=='Low Availability':
-                res['class'] = 'warning'
+                res['class'] = 'result-low'
             else: 
-                res['class']='danger'
+                res['class']='result-un'
         print(results)
 
         context = {'request':user_input,'results':results}
