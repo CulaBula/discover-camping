@@ -1,1 +1,1 @@
-web: daphne discover_camping.wsgi
+web: gunicorn discover_camping.wsgi
