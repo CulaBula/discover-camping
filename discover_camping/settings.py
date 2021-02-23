@@ -135,6 +135,3 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
-#Chrome
-CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
-GOOGLE_CHROME_BIN = '/app/.apt/usr/bin/google-chrome'
