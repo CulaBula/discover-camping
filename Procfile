@@ -1,1 +1,1 @@
-web: gunicorn webui.asgi:application
+web: gunicorn discover_camping.asgi:application
