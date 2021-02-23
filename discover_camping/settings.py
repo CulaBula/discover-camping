@@ -26,6 +26,8 @@ SECRET_KEY = '0m#bkvx4gr642e=ds&b_$psnc_*m9crgjj%q5k_+(pw$q47t5d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+DEBUG_PROPAGATE_EXCEPTIONS = True
+
 ALLOWED_HOSTS = ['discover-camping-app.herokuapp.com','127.0.0.1','localhost']
 
 
@@ -122,7 +124,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # # Extra places for collectstatic to find static files.
 # STATICFILES_DIRS = (
@@ -130,3 +132,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # )
 
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+
+COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
