@@ -39,3 +39,4 @@ wrapt==1.11.2
 gunicorn
 daphne
 whitenoise
+webdriver-manager
