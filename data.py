@@ -38,8 +38,8 @@ def scrape(param_dict):
 
     #BC residency redirect
     if "bcresidency" in driver.current_url: # check if "bcresidency" is in URL
-    driver.find_element_by_id("confirm-bc-resident").click()
-    
+        driver.find_element_by_id("confirm-bc-resident").click()
+
     #Select Calendar
     driver.find_element_by_id("mainContent_SearchUnitAvailbity_txtArrivalDate").click()
     #Setup beatiful soup for date picker
