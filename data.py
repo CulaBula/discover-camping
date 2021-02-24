@@ -36,6 +36,10 @@ def scrape(param_dict):
     #Go to site
     driver.get("https://www.discovercamping.ca/bccweb/Facilities/SearchViewUnitAvailabity.aspx")
 
+    #BC residency redirect
+    if "bcresidency" in driver.current_url: # check if "bcresidency" is in URL
+    driver.find_element_by_id("confirm-bc-resident").click()
+    
     #Select Calendar
     driver.find_element_by_id("mainContent_SearchUnitAvailbity_txtArrivalDate").click()
     #Setup beatiful soup for date picker
@@ -79,13 +83,7 @@ def scrape(param_dict):
     #Combine the 2 lists
     full_list = zip(loc_list,sts_list)
     #Output List
-    park_list = []
-    fac_list = []
-    unit_type_list = []
-    unit_status_list = []
-    i = 0
     main_list = []
-    main_dict = {} 
     #loop through and print Available
     print ("The following have sites available:")
     for a,b in full_list:
@@ -109,14 +107,12 @@ def scrape(param_dict):
                                 unit_type = un_type.get_text().strip()                  
                             #Strip out status
                             unit_status_raw = str(un_type.find('img')['src'])
-                            if unit_status_raw == "../CommonThemes/Images/round_red.png":
-                                unit_status= "Unavailable"
-                            elif unit_status_raw == "../CommonThemes/Images/round_2.png":
+                            if unit_status_raw == "../CommonThemes/Images/round_2.png":
                                 unit_status= "Low Availability"
                             elif unit_status_raw == "../CommonThemes/Images/round_1.png":
-                                unit_status= "Available"                
+                                unit_status= "Available"                                                 
                             else:
-                                unit_status= "Error"
+                                unit_status= "Unavailable"
                             fact_dict = {}
                             fact_dict['park_name'] = park_name
                             fact_dict['park_facility'] = facility
