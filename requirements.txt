@@ -14,7 +14,7 @@ isort
 lazy-object-proxy
 matplotlib==2.1.0rc1
 mccabe==0.6.1
-numpy==1.16.4
+numpy==1.22.0
 pandas==0.24.2
 psycopg2
 pycparser
